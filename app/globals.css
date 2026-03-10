@@ -1,0 +1,9 @@
+﻿@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-outfit), "sans-serif";
+}
+
+body {
+  background-color: #0f0c29;
+}
