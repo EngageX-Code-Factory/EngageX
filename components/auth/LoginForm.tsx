@@ -139,7 +139,7 @@ export default function LoginForm() {
             {/* Footer Register */}
             <div className="mt-2 text-center text-[0.9rem] text-[#b3b3b3]">
               New look? 
-              <Link href="/register" className="ml-1 font-semibold text-white transition-colors hover:text-[#f5af19] hover:underline">
+              <Link href="/auth/register" className="ml-1 font-semibold text-white transition-colors hover:text-[#f5af19] hover:underline">
                 Apply for Membership
               </Link>
             </div>
