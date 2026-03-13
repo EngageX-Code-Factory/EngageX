@@ -1,11 +1,11 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { Outfit } from 'next/font/google';
-import './globals.css';
+import '../globals.css';
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 
 export const metadata: Metadata = {
-  title: 'ClubHub - Student Access',
+  title: 'EngageX',
   description: 'Exclusive access to top-tier university clubs.',
 };
 

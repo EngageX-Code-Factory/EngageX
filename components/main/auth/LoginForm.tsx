@@ -30,7 +30,7 @@ export default function LoginForm() {
           />
           
           <div className="mb-12 flex items-center justify-center gap-[15px] tracking-[1px] lg:justify-start">
-            <Disc3 className="h-8 w-8 text-[#f5af19]" />
+            <img src="/logo.png" alt="Logo" className=" h-20 w-20" />
             <span className="text-[1.5rem] font-bold">EngageX</span>
           </div>
 
