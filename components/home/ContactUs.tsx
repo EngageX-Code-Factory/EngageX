@@ -24,7 +24,7 @@ export default function ContactUs() {
               Campus Journey?
             </h2>
             <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-              Join 5,000+ students already building their future on EngageX. It's free, it's fast, and it's your key to the campus.
+              Join 5,000+ students already building their future on EngageX. It&apos;s free, it&apos;s fast, and it&apos;s your key to the campus.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
