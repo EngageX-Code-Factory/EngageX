@@ -125,7 +125,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © 2024 EngageX. Made with <Heart className="inline w-4 h-4 text-red-500 mx-1" /> for student communities.
+            © 2026 EngageX. Made with <Heart className="inline w-4 h-4 text-red-500 mx-1" /> for student communities.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors text-sm">
