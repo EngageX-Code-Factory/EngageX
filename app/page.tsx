@@ -1,5 +1,13 @@
-﻿import { redirect } from "next/navigation";
+﻿import Navbar from '@/components/layout/Navbar';
+import Hero from '@/components/home/Hero';
+import Footer from '@/components/layout/Footer';
 
 export default function Home() {
-  redirect("/auth/login");
+  return (
+    <div className="min-h-screen bg-slate-900">
+      <Navbar />
+      <Hero />
+      <Footer />
+    </div>
+  );
 }
