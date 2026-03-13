@@ -1,5 +1,5 @@
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
+import Navbar from '@/components/main/layout/Navbar';
+import Footer from '@/components/main/layout/Footer';
 
 export default function Events() {
   return (
