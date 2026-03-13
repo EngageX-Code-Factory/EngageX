@@ -86,7 +86,7 @@ export default function EventsSection() {
         {/* Glowing Orbs */}
         <div className="absolute top-1/3 -left-1/4 w-[800px] h-[800px] bg-purple-600/10 rounded-full blur-[120px] mix-blend-screen animate-pulse duration-10000"></div>
         <div className="absolute bottom-1/3 -right-1/4 w-[800px] h-[800px] bg-cyan-600/10 rounded-full blur-[120px] mix-blend-screen animate-pulse duration-10000 delay-1000"></div>
-        
+
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_80%,transparent_100%)]"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0b0515]/80 to-[#0b0515]"></div>
       </div>
@@ -110,16 +110,16 @@ export default function EventsSection() {
             return (
               <div key={index} className={`group relative bg-[#130a21]/50 backdrop-blur-xl border border-white/[0.05] rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-4 ${style.border} ${style.shadow} flex flex-col h-full`}>
                 <div className={`absolute inset-0 bg-gradient-to-br ${style.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                
+
                 {/* Image Section */}
                 <div className="relative h-56 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-[#130a21] via-black/20 to-transparent z-10"></div>
-                  <img 
-                    src={event.image} 
-                    alt={event.title} 
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" 
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
-                  
+
                   {/* Category Badge */}
                   <div className="absolute top-5 left-5 z-20">
                     <div className={`${style.badge} backdrop-blur-md text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase border border-white/30`}>
@@ -139,7 +139,7 @@ export default function EventsSection() {
                 {/* Content Section */}
                 <div className="relative p-8 pt-4 flex-1 flex flex-col z-20">
                   <h3 className={`text-2xl font-bold text-white mb-4 ${style.title} transition-colors line-clamp-2`}>{event.title}</h3>
-                  
+
                   <div className="flex flex-col gap-3 mb-8">
                     <div className="flex items-center text-gray-400">
                       <div className={`w-8 h-8 rounded-full ${style.iconBg} border flex items-center justify-center mr-3`}>
