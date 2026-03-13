@@ -6,6 +6,7 @@ import TopOrganizations from './TopOrganizations';
 import CategoriesSection from './CategoriesSection';
 import EventsSection from './EventsSection';
 import ReviewsSection from './ReviewsSection';
+import ContactUs from './ContactUs';
 
 export default function Hero() {
   return (
@@ -16,6 +17,7 @@ export default function Hero() {
       <CategoriesSection />
       <EventsSection />
       <ReviewsSection />
+      <ContactUs />
     </div>
   );
 }
