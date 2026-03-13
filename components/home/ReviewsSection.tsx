@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Star, Quote } from 'lucide-react';
 import { Space_Grotesk } from 'next/font/google';
 
@@ -110,9 +111,11 @@ export default function ReviewsSection() {
                 <div className="flex items-center gap-4 border-t border-white/5 pt-6">
                   <div className="relative">
                     <div className="absolute inset-0 bg-purple-500 blur-md opacity-30 group-hover:opacity-50 transition-opacity rounded-full"></div>
-                    <img
+                    <Image
                       src={review.image}
                       alt={review.name}
+                      width={48}
+                      height={48}
                       className="relative w-12 h-12 rounded-full object-cover border-2 border-white/10"
                     />
                   </div>

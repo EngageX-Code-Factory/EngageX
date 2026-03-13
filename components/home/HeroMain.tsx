@@ -1,60 +1,16 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Play, ArrowDown, Sparkles, Users, Calendar } from 'lucide-react';
+import { Users, Calendar } from 'lucide-react';
 import { Space_Grotesk } from 'next/font/google';
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], weight: ['700'] });
 
 export default function HeroMain() {
   const [isVisible, setIsVisible] = useState(false);
-  const [counters, setCounters] = useState({
-    students: 0,
-    clubs: 0,
-    events: 0,
-    awards: 0
-  });
 
   useEffect(() => {
     setIsVisible(true);
-
-    // Counter animation
-    const animateCounters = () => {
-      const targets = { students: 5000, clubs: 120, events: 350, awards: 50 };
-      const speed = 200;
-
-      const updateCount = () => {
-        setCounters(prev => {
-          const newCounters = { ...prev };
-          let allComplete = true;
-
-          Object.keys(targets).forEach(key => {
-            const target = targets[key as keyof typeof targets];
-            const current = prev[key as keyof typeof prev];
-            const inc = target / speed;
-
-            if (current < target) {
-              newCounters[key as keyof typeof newCounters] = Math.ceil(current + inc);
-              allComplete = false;
-            } else {
-              newCounters[key as keyof typeof newCounters] = target;
-            }
-          });
-
-          if (!allComplete) {
-            setTimeout(updateCount, 20);
-          }
-
-          return newCounters;
-        });
-      };
-
-      updateCount();
-    };
-
-    // Start counter animation after a delay
-    setTimeout(animateCounters, 1000);
   }, []);
 
   return (

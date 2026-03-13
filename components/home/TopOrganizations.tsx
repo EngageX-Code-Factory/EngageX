@@ -1,4 +1,5 @@
-import { Crown, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 
 export default function TopOrganizations() {
   return (
@@ -32,9 +33,11 @@ export default function TopOrganizations() {
             {/* Image Container */}
             <div className="relative overflow-hidden rounded-2xl mb-6 shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&q=80"
                 alt="Harmony Society"
+                width={600}
+                height={400}
                 className="w-full h-56 object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
               />
               <div className="absolute bottom-4 left-4 z-20">
@@ -85,9 +88,11 @@ export default function TopOrganizations() {
             {/* Image Container */}
             <div className="relative overflow-hidden rounded-2xl mb-8 shadow-2xl border border-yellow-500/20">
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
                 alt="Innovators Hub"
+                width={600}
+                height={400}
                 className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
               />
               <div className="absolute bottom-4 left-4 z-20">
@@ -136,9 +141,11 @@ export default function TopOrganizations() {
             {/* Image Container */}
             <div className="relative overflow-hidden rounded-2xl mb-6 shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
                 alt="Future Leaders"
+                width={600}
+                height={400}
                 className="w-full h-56 object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
               />
               <div className="absolute bottom-4 left-4 z-20">
