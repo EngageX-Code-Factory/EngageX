@@ -12,9 +12,6 @@ export default function Navbar() {
       <div className="w-full max-w-5xl bg-[#0b0515]/50 backdrop-blur-md border border-white/10 rounded-full px-6 py-3 flex justify-between items-center shadow-2xl">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
-          <div className="bg-[#8b5cf6] text-white p-1.5 rounded-full flex items-center justify-center">
-            <Network className="w-5 h-5" />
-          </div>
           <span className="text-xl font-bold text-white tracking-widest uppercase">ENGAGE<span className="text-[#8b5cf6]">X</span></span>
         </Link>
 
