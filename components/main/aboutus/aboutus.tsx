@@ -109,33 +109,40 @@ export default function AboutUs() {
       </div>
 
       {/* Mission & Vision Section */}
-      <div className="max-w-7xl mx-auto mb-24 lg:mb-32">
-        <div className="grid md:grid-cols-2 gap-8">
+      <div className="relative max-w-7xl mx-auto mb-32 lg:mb-48 mt-16 md:mt-32">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[400px] bg-gradient-to-r from-purple-500/20 to-blue-500/20 blur-[120px] -z-10 rounded-full pointer-events-none"></div>
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Mission */}
-          <div className="group relative p-8 md:p-12 bg-[#17152b] rounded-3xl border border-[#2d2a4a] hover:border-purple-500/50 transition-colors overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] -mr-32 -mt-32 transition-opacity group-hover:opacity-100 opacity-50"></div>
-            <div className="relative z-10">
-              <div className="w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-8">
-                <Target className="w-8 h-8 text-purple-400" />
+          <div className="group relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-[2.5rem] blur-lg opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+            <div className="relative p-8 md:p-12 lg:p-14 bg-white/5 backdrop-blur-2xl rounded-[2.5rem] overflow-hidden">
+              <div className="absolute top-0 right-0 w-72 h-72 bg-purple-500/10 rounded-full blur-[80px] -mr-32 -mt-32 transition-transform duration-700 group-hover:scale-150 group-hover:opacity-100 opacity-50"></div>
+              <div className="relative z-10">
+                <div className="mb-8 inline-flex items-center justify-center p-4 bg-purple-500/10 rounded-3xl shadow-[0_0_30px_rgba(168,85,247,0.2)] backdrop-blur-md">
+                  <Target className="w-10 h-10 text-purple-400" />
+                </div>
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-white tracking-tight">Our Mission</h2>
+                <p className="text-gray-300 leading-relaxed text-lg md:text-xl font-light">
+                  To empower students by providing a <span className="text-purple-300 font-medium tracking-wide">seamless, intuitive platform</span> that centralizes campus organization. We strive to make discovering clubs, managing events, and building communities easier than ever before.
+                </p>
               </div>
-              <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
-              <p className="text-gray-400 leading-relaxed text-lg">
-                To empower students by providing a seamless, intuitive platform that centralizes campus organization. We strive to make discovering clubs, managing events, and building communities easier than ever before.
-              </p>
             </div>
           </div>
 
           {/* Vision */}
-          <div className="group relative p-8 md:p-12 bg-[#17152b] rounded-3xl border border-[#2d2a4a] hover:border-blue-500/50 transition-colors overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] -mr-32 -mt-32 transition-opacity group-hover:opacity-100 opacity-50"></div>
-            <div className="relative z-10">
-              <div className="w-16 h-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-8">
-                <Eye className="w-8 h-8 text-blue-400" />
+          <div className="group relative mt-4 md:mt-0 md:translate-y-24">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-[2.5rem] blur-lg opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+            <div className="relative p-8 md:p-12 lg:p-14 bg-white/5 backdrop-blur-2xl rounded-[2.5rem] overflow-hidden">
+              <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-500/10 rounded-full blur-[80px] -ml-32 -mb-32 transition-transform duration-700 group-hover:scale-150 group-hover:opacity-100 opacity-50"></div>
+              <div className="relative z-10">
+                <div className="mb-8 inline-flex items-center justify-center p-4 bg-blue-500/10 rounded-3xl shadow-[0_0_30px_rgba(59,130,246,0.2)] backdrop-blur-md">
+                  <Eye className="w-10 h-10 text-blue-400" />
+                </div>
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-white tracking-tight">Our Vision</h2>
+                <p className="text-gray-300 leading-relaxed text-lg md:text-xl font-light">
+                  We envision a <span className="text-blue-300 font-medium tracking-wide">connected campus ecosystem</span> where every student feels engaged and every organization has the tools they need to thrive, fostering a culture of participation and lifelong connections.
+                </p>
               </div>
-              <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
-              <p className="text-gray-400 leading-relaxed text-lg">
-                We envision a connected campus ecosystem where every student feels engaged and every organization has the tools they need to thrive, fostering a culture of participation and lifelong connections.
-              </p>
             </div>
           </div>
         </div>
