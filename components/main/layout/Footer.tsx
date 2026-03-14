@@ -15,7 +15,7 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">EX</span>
+                <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
               </div>
               <span className="text-xl font-bold text-white">EngageX</span>
             </div>
