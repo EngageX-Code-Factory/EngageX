@@ -1,15 +1,13 @@
 import Navbar from '@/components/main/layout/Navbar';
 import Footer from '@/components/main/layout/Footer';
+import ClubsComponent from '@/components/main/clubs/Clubs';
 
-export default function Clubs() {
+export default function ClubsPage() {
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-[#0f0c29]">
       <Navbar />
-      <main className="pt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 className="text-4xl font-bold text-white text-center mb-8">Explore Clubs</h1>
-          <p className="text-gray-400 text-center">Club management features coming soon...</p>
-        </div>
+      <main className="pt-24">
+        <ClubsComponent />
       </main>
       <Footer />
     </div>
