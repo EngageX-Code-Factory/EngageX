@@ -10,7 +10,7 @@ const navLinks = [
   { label: 'My Clubs', href: '/student/clubs' },
   { label: 'All Clubs', href: '/student/all-clubs' },
   { label: 'Events', href: '/student/events' },
-  { label: 'Event Planner', href: '/student/planner' },
+  { label: 'Event Planner', href: '/student/event-planner' },
 ];
 
 export default function Navbar() {
@@ -81,7 +81,7 @@ export default function Navbar() {
 
             {profileOpen && (
               <div className="absolute right-0 top-full mt-2 w-48 bg-[#1a1d25] border border-white/10 rounded-xl shadow-xl py-1">
-                {['Profile', 'Settings', 'Sign out'].map((item) => (
+                {['Profile', 'Sign out'].map((item) => (
                   <button
                     key={item}
                     className="w-full text-left px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
