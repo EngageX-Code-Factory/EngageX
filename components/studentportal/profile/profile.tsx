@@ -5,6 +5,7 @@ import {
   Camera, Eye, EyeOff, Save, Key, ChevronRight, CheckCircle2, UserCircle 
 } from 'lucide-react';
 import { useRef } from 'react';
+import ConfirmationModal from '../layout/ConfirmationModal';
 
 export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -13,6 +14,7 @@ export default function Profile() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [showDeactivateModal, setShowDeactivateModal] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Mock initial data
@@ -279,7 +281,10 @@ export default function Profile() {
 
             {/* Account Management Actions */}
             <div className="flex items-center justify-between p-2">
-              <button className="text-sm font-bold text-red-500/70 hover:text-red-400 transition-colors uppercase tracking-widest">
+              <button 
+                onClick={() => setShowDeactivateModal(true)}
+                className="text-sm font-bold text-red-500/70 hover:text-red-400 transition-colors uppercase tracking-widest"
+              >
                 Deactivate Account
               </button>
               <div className="flex items-center gap-4 text-xs text-gray-500 font-medium tracking-wide">
@@ -387,6 +392,19 @@ export default function Profile() {
           </div>
         </div>
       )}
+
+      <ConfirmationModal
+        isOpen={showDeactivateModal}
+        onClose={() => setShowDeactivateModal(false)}
+        onConfirm={() => {
+          console.log('Account deactivated');
+          // Add actual deactivation logic here
+        }}
+        title="Deactivate Account"
+        message="This action is permanent and will disable your access to all EngageX clubs and events. Are you sure you want to proceed?"
+        confirmText="Deactivate My Account"
+        type="danger"
+      />
     </div>
   );
 }
