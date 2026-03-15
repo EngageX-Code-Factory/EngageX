@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Search, Users, Calendar, ChevronLeft, ChevronRight, RefreshCw, ExternalLink, UserPlus } from 'lucide-react';
+import { Search, Users, Calendar, ChevronLeft, ChevronRight, RefreshCw, ExternalLink, UserPlus, LayoutGrid, List } from 'lucide-react';
 import Link from 'next/link';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -219,6 +219,7 @@ export default function AllClubs() {
   const [category, setCategory] = useState('All');
   const [faculty, setFaculty] = useState('All Faculties');
   const [currentPage, setCurrentPage] = useState(1);
+  const [view, setView] = useState<'grid' | 'list'>('grid');
 
   const filtered = useMemo(() => {
     return allClubs.filter((c) => {
@@ -310,21 +311,82 @@ export default function AllClubs() {
         </button>
       </div>
 
-      {/* ── Result count ── */}
-      <div className="flex items-center gap-2 mb-5">
-        <span className="w-1 h-5 bg-purple-500 rounded-full inline-block" />
-        <p className="text-sm text-gray-400">
-          Showing <span className="text-white font-semibold">{filtered.length}</span> club{filtered.length !== 1 ? 's' : ''}
-          {(category !== 'All' || faculty !== 'All Faculties' || search) && (
-            <span className="text-purple-400"> (filtered)</span>
-          )}
-        </p>
+      {/* ── Result count & View Toggle ── */}
+      <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center gap-2">
+          <span className="w-1 h-5 bg-purple-500 rounded-full inline-block" />
+          <p className="text-sm text-gray-400">
+            Showing <span className="text-white font-semibold">{filtered.length}</span> club{filtered.length !== 1 ? 's' : ''}
+            {(category !== 'All' || faculty !== 'All Faculties' || search) && (
+              <span className="text-purple-400"> (filtered)</span>
+            )}
+          </p>
+        </div>
+
+        {/* View Toggle */}
+        <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl p-1">
+          <button
+            onClick={() => setView('grid')}
+            className={`p-2 rounded-lg transition-all ${view === 'grid' ? 'bg-purple-600 text-white' : 'text-gray-400 hover:text-white'}`}
+          >
+            <LayoutGrid className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => setView('list')}
+            className={`p-2 rounded-lg transition-all ${view === 'list' ? 'bg-purple-600 text-white' : 'text-gray-400 hover:text-white'}`}
+          >
+            <List className="w-4 h-4" />
+          </button>
+        </div>
       </div>
 
-      {/* ── Grid ── */}
+      {/* ── Result Grid/List ── */}
       {paginated.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {paginated.map((club) => <ClubCard key={club.id} club={club} />)}
+        <div className={view === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5' : 'flex flex-col gap-4'}>
+          {paginated.map((club) => (
+            view === 'grid' ? (
+              <ClubCard key={club.id} club={club} />
+            ) : (
+              /* List row view - No images, similar to myclubs list view */
+              <div
+                key={club.id}
+                className="bg-white/3 border border-white/10 rounded-2xl p-4 flex items-center gap-5 hover:border-purple-500/30 transition-all"
+              >
+                <div className="w-12 h-12 shrink-0 rounded-xl bg-purple-500/10 border border-white/10 flex items-center justify-center">
+                  <Users className="w-5 h-5 text-purple-400/70" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="text-white font-semibold text-sm">{club.name}</h3>
+                    <span className={`text-[10px] font-bold tracking-widest px-2 py-0.5 rounded-full ${CATEGORY_COLORS[club.category]}`}>
+                      {club.category}
+                    </span>
+                    {club.status && (
+                      <span className="text-[10px] font-bold tracking-widest px-2 py-0.5 rounded-full bg-purple-600/80 text-white">
+                        {club.status}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-amber-400 text-[11px] font-semibold tracking-wide uppercase mt-0.5">{club.faculty}</p>
+                  <div className="flex items-center gap-4 mt-1.5 text-xs text-gray-500">
+                    <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" /> {club.members}+ members</span>
+                    <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" /> {club.events} upcoming events</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <Link
+                    href={`/student/all-clubs/${club.id}`}
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium transition-colors"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" /> Details
+                  </Link>
+                  <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 text-xs font-medium transition-colors">
+                    <UserPlus className="w-3.5 h-3.5" /> Join
+                  </button>
+                </div>
+              </div>
+            )
+          ))}
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-24 text-center">
