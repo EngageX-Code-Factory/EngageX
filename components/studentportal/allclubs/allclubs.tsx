@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { Search, Users, Calendar, ChevronLeft, ChevronRight, RefreshCw, ExternalLink, UserPlus, LayoutGrid, List } from 'lucide-react';
 import Link from 'next/link';
+import JoinClubModal from './JoinClubModal';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface Club {
@@ -109,7 +110,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 const ITEMS_PER_PAGE = 6;
 
 // ── Club Card ─────────────────────────────────────────────────────────────
-function ClubCard({ club }: { club: Club }) {
+function ClubCard({ club, onJoin }: { club: Club; onJoin: (club: Club) => void }) {
   const catClass = CATEGORY_COLORS[club.category] ?? 'bg-gray-500/20 text-gray-300 border-gray-500/20';
   const facultyColor = club.faculty === 'Faculty of Arts' ? 'text-amber-400'
     : club.faculty === 'Faculty of Computing' ? 'text-indigo-400'
@@ -173,7 +174,10 @@ function ClubCard({ club }: { club: Club }) {
           >
             <ExternalLink className="w-3.5 h-3.5" /> Details
           </Link>
-          <button className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-purple-500/30 text-gray-300 text-sm font-medium transition-colors">
+          <button 
+            onClick={() => onJoin(club)}
+            className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-purple-500/30 text-gray-300 text-sm font-medium transition-colors"
+          >
             <UserPlus className="w-3.5 h-3.5" /> Join Club
           </button>
         </div>
@@ -220,6 +224,13 @@ export default function AllClubs() {
   const [faculty, setFaculty] = useState('All Faculties');
   const [currentPage, setCurrentPage] = useState(1);
   const [view, setView] = useState<'grid' | 'list'>('grid');
+  const [showJoinModal, setShowJoinModal] = useState(false);
+  const [selectedClub, setSelectedClub] = useState<Club | null>(null);
+
+  const handleJoinClick = (club: Club) => {
+    setSelectedClub(club);
+    setShowJoinModal(true);
+  };
 
   const filtered = useMemo(() => {
     return allClubs.filter((c) => {
@@ -345,7 +356,7 @@ export default function AllClubs() {
         <div className={view === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5' : 'flex flex-col gap-4'}>
           {paginated.map((club) => (
             view === 'grid' ? (
-              <ClubCard key={club.id} club={club} />
+              <ClubCard key={club.id} club={club} onJoin={handleJoinClick} />
             ) : (
               /* List row view - No images, similar to myclubs list view */
               <div
@@ -380,7 +391,10 @@ export default function AllClubs() {
                   >
                     <ExternalLink className="w-3.5 h-3.5" /> Details
                   </Link>
-                  <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 text-xs font-medium transition-colors">
+                  <button 
+                    onClick={() => handleJoinClick(club)}
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 text-xs font-medium transition-colors"
+                  >
                     <UserPlus className="w-3.5 h-3.5" /> Join
                   </button>
                 </div>
@@ -410,6 +424,13 @@ export default function AllClubs() {
         perPage={ITEMS_PER_PAGE}
         current={currentPage}
         onChange={(p) => { setCurrentPage(p); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+      />
+
+      <JoinClubModal 
+        isOpen={showJoinModal}
+        onClose={() => setShowJoinModal(false)}
+        clubName={selectedClub?.name || ''}
+        category={selectedClub?.category || ''}
       />
     </div>
   );

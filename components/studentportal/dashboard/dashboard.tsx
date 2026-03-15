@@ -3,6 +3,7 @@ import RecommendedEvents from './recommended-events';
 import MySchedule from './my-schedule';
 import CalendarSidebar from './calendar-sidebar';
 import RecentActivity from './recent-activity';
+import EmergencyAlert from './emergency-alert';
 
 export default function Dashboard() {
   return (
@@ -11,14 +12,17 @@ export default function Dashboard() {
         {/* ── Main Content (left, ~65%) ── */}
         <div className="flex-1 space-y-8 min-w-0">
           {/* Welcome */}
-          <div>
-            <h1 className="text-4xl font-bold text-white">
-              Welcome back,{' '}
-              <span className="text-purple-400">Alex!</span>
-            </h1>
-            <p className="text-gray-400 mt-2 text-base">
-              Here's what's happening in your campus community today.
-            </p>
+          <div className="flex flex-row items-center justify-between gap-6">
+            <div>
+              <h1 className="text-4xl font-bold text-white">
+                Welcome back,{' '}
+                <span className="text-purple-400">Alex!</span>
+              </h1>
+              <p className="text-gray-400 mt-2 text-base">
+                Here's what's happening in your campus community today.
+              </p>
+            </div>
+            <EmergencyAlert />
           </div>
 
           {/* Stat Cards */}

@@ -7,6 +7,7 @@ import {
   Clock
 } from 'lucide-react';
 import Link from 'next/link';
+import ConfirmationModal from '../layout/ConfirmationModal';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface Club {
@@ -161,7 +162,7 @@ function SummaryStat({
   );
 }
 
-function ClubCard({ club }: { club: Club }) {
+function ClubCard({ club, onLeave }: { club: Club; onLeave: (club: Club) => void }) {
   const { label: statusLabel, class: statusClass } = statusConfig[club.status];
   const catClass = categoryColor[club.category] ?? 'bg-gray-500/20 text-gray-300';
 
@@ -212,7 +213,10 @@ function ClubCard({ club }: { club: Club }) {
             <ExternalLink className="w-3.5 h-3.5" />
             View Dashboard
           </Link>
-          <button className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 text-sm font-medium transition-colors">
+          <button 
+            onClick={() => onLeave(club)}
+            className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 text-sm font-medium transition-colors"
+          >
             <LogOut className="w-3.5 h-3.5" />
             Leave Club
           </button>
@@ -275,6 +279,21 @@ function Pagination({
 export default function MyClubs() {
   const [currentPage, setCurrentPage] = useState(1);
   const [view, setView] = useState<'grid' | 'list'>('grid');
+  
+  const [showLeaveModal, setShowLeaveModal] = useState(false);
+  const [selectedClub, setSelectedClub] = useState<Club | null>(null);
+
+  const handleLeaveClick = (club: Club) => {
+    setSelectedClub(club);
+    setShowLeaveModal(true);
+  };
+
+  const handleConfirmLeave = () => {
+    if (selectedClub) {
+      console.log(`Leaving club: ${selectedClub.name}`);
+      // Actual leave logic would go here
+    }
+  };
 
   const activeClubs = clubs.filter((c) => c.status !== 'Inactive');
   const upcomingEvents = 5; // mock
@@ -367,7 +386,7 @@ export default function MyClubs() {
       >
         {paginatedClubs.map((club) =>
           view === 'grid' ? (
-            <ClubCard key={club.id} club={club} />
+            <ClubCard key={club.id} club={club} onLeave={handleLeaveClick} />
           ) : (
             /* List row view */
             <div
@@ -397,7 +416,10 @@ export default function MyClubs() {
                 >
                   <ExternalLink className="w-3.5 h-3.5" /> View
                 </Link>
-                <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 text-xs font-medium transition-colors">
+                <button 
+                  onClick={() => handleLeaveClick(club)}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 text-xs font-medium transition-colors"
+                >
                   <LogOut className="w-3.5 h-3.5" /> Leave
                 </button>
               </div>
@@ -415,6 +437,15 @@ export default function MyClubs() {
           setCurrentPage(p);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
+      />
+      <ConfirmationModal
+        isOpen={showLeaveModal}
+        onClose={() => setShowLeaveModal(false)}
+        onConfirm={handleConfirmLeave}
+        title="Leave Club"
+        message={`Are you sure you want to leave ${selectedClub?.name}? You will lose access to member-only events and content.`}
+        confirmText="Confirm Leave"
+        type="danger"
       />
     </div>
   );
