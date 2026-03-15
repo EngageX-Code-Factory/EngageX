@@ -3,7 +3,7 @@
 import { Bell, ChevronDown, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const navLinks = [
   { label: 'Dashboard', href: '/student' },
@@ -15,7 +15,24 @@ const navLinks = [
 
 export default function Navbar() {
   const [profileOpen, setProfileOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setProfileOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Close dropdown on navigation
+  useEffect(() => {
+    setProfileOpen(false);
+  }, [pathname]);
 
   return (
     <nav className="bg-[#0b0515]/80 backdrop-blur-md border-b border-white/5 sticky top-0 z-50">
@@ -67,7 +84,7 @@ export default function Navbar() {
           </button>
 
           {/* Profile */}
-          <div className="relative">
+          <div className="relative" ref={profileRef}>
             <button
               onClick={() => setProfileOpen((prev) => !prev)}
               className="flex items-center gap-2.5 pl-1 pr-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors"
@@ -82,12 +99,14 @@ export default function Navbar() {
             {profileOpen && (
               <div className="absolute right-0 top-full mt-2 w-48 bg-[#1a1d25] border border-white/10 rounded-xl shadow-xl py-1">
                 {['Profile', 'Sign out'].map((item) => (
-                  <button
+                  <Link
                     key={item}
-                    className="w-full text-left px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+                    onClick={() => setProfileOpen(false)}
+                    href={item === 'Profile' ? '/student/profile' : '#'}
+                    className="block w-full text-left px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
                   >
                     {item}
-                  </button>
+                  </Link>
                 ))}
               </div>
             )}
