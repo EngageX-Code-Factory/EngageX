@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { ClipboardList, Eye } from "lucide-react";
-
+import { ClipboardList, Eye, QrCode } from "lucide-react";
 const DUMMY_EVENTS = [
   { id: "1", title: "Tech Talk 2025", date: "2025-04-10", venue: "Hall A", registered: 6, attended: 3 },
   { id: "2", title: "Leadership Workshop", date: "2025-04-18", venue: "Room 201", registered: 12, attended: 10 },
@@ -11,10 +10,20 @@ export default function AttendanceIndexPage() {
   return (
     <div className="max-w-5xl mx-auto space-y-6">
 
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900">Attendance</h2>
-        <p className="text-gray-500 text-sm mt-1">View attendance records for each event.</p>
-      </div>
+<div className="flex items-center justify-between">
+  <div>
+    <h2 className="text-2xl font-bold" style={{ color: '#0f172a' }}>Attendance</h2>
+    <p className="text-sm mt-1" style={{ color: '#64748b' }}>View attendance records for each event.</p>
+  </div>
+  <Link
+    href="/organization/attendance/scan"
+    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
+    style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' }}
+  >
+    <QrCode size={16} />
+    Scan QR
+  </Link>
+</div>
 
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
         <table className="w-full text-sm">
